@@ -3,31 +3,31 @@
 
 void binTree_prefixBrowse(node_bin* pParent, void(*fct(void*)))
 {
-    if(pParent != NULL){
-        fct(pParent);
-        binTree_prefixBrowse(pParent->left, fct);
-        binTree_prefixBrowse(pParent->right, fct);
-    }
+  if(pParent != NULL){
+    fct(pParent);
+    binTree_prefixBrowse(pParent->left, fct);
+    binTree_prefixBrowse(pParent->right, fct);
+  }
 }
 
 
 void binTree_postfixBrowse(node_bin* pParent, void(*fct(void*)))
 {
-    if(pParent != NULL){
-        binTree_postfixBrowse(pParent->left, fct(pParent->left));
-        binTree_postfixBrowse(pParent->right, fct(pParent->right));
-        fct(pParent);
-    }
+  if(pParent != NULL){
+    binTree_postfixBrowse(pParent->left, fct(pParent->left));
+    binTree_postfixBrowse(pParent->right, fct(pParent->right));
+    fct(pParent);
+  }
 }
 
 
 void binTree_infixBrowse(node_bin* pParent, void(*fct(void*)))
 {
-    if(pParent != NULL){
-        binTree_infixBrowse(pParent->left, fct(pParent->left));
-        fct(pParent);
-        binTree_infixBrowse(pParent->right, fct(pParent->right));
-    }
+  if(pParent != NULL){
+    binTree_infixBrowse(pParent->left, fct(pParent->left));
+    fct(pParent);
+    binTree_infixBrowse(pParent->right, fct(pParent->right));
+  }
 }
 
 

@@ -6,21 +6,21 @@
 #include "element.h"
 
 /**
-    @author DREVET Olivier
+   @author DREVET Olivier
 
 
 */
 
 
 typedef struct {
-    struct summit* next;
-    struct arc* pFirstArc;
-    void* data;
+  struct summit* next;
+  struct arc* pFirstArc;
+  void* data;
 }summit;
 
 typedef struct {
-    struct arc* next;
-    struct summit* destination;
+  struct arc* next;
+  struct summit* destination;
 }arc;
 
 #endif
