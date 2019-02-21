@@ -5,8 +5,9 @@
    @brief common to all test routines
 */
 
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <stdint.h>
 
 #include "common.h"
 

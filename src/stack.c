@@ -1,18 +1,15 @@
 #include "stack.h"
 
 
-void stack_push(stack* pS, void* data)
-{
-  stack pNewElem = malloc(sizeof(element));  /* Declaration et allocation du nouvel element */
-  pNewElem->data = data;                     /* Attribution de la valeur */
-  pNewElem->next = *pS;                      /* Le nouvel element pointe maintenant vers l'ancienne tête de liste */
-  *pS = pNewElem;                            /* Le désormé premier element prend l'@ du nouvel element (car l'ajout se fait en debut de liste)*/
+void stack_push(stack* pS, void* data){
+  stack pNewElem = malloc(sizeof(element));
+  pNewElem->data = data;
+  pNewElem->next = *pS;
+  *pS = pNewElem;
 }
 
 
-element* stack_pop(stack* pS)
-{
-  /* Memorisation de l'adresse du premier élément */
+element* stack_pop(stack* pS){
   element* pBrowse = *pS;
   if (pBrowse != NULL) {
     *pS = pBrowse->next;
@@ -21,8 +18,7 @@ element* stack_pop(stack* pS)
 }
 
 
-void stack_clear(stack* pS)
-{
+void stack_clear(stack* pS){
   element* pBrowse;
 
   while (*pS != NULL) {
@@ -35,17 +31,15 @@ void stack_clear(stack* pS)
 }
 
 
-void stack_browse(stack S, void(*fctBrowse)(void*))
-{
+void stack_browse(stack S, void(*fctBrowse)(void*)){
   while (S) {
     fctBrowse(S);
-    S = S->next;
+    S = (stack)S->next;
   }
 }
 
 
-size_t stack_count(stack S)
-{
+size_t stack_count(stack S){
   int number=0;
   element* pFirstElem = S;
   while (pFirstElem) {

@@ -5,60 +5,36 @@
 
 #include "element.h"
 
-
 /**
    @author DREVET Olivier
-
-
-   stack (pile) : First In First Out, Dernier Arrivé, premier sortie.
-   Comme poser des assiettes les unes sur les autres.
-   <img src="stack.png"/>
+   @summary stack: First In First Out
+   always point on the first element
 */
 
-
-typedef element* stack;     /// Une pile est un pointeur sur le premier élément
-
+typedef element* stack;
 
 /**
-   Ajoute un element (empile) en tête de liste,
-   cette fonction est algorithmiquement identique a linkedList_push_front.
-   <img src="stack_push.png"/>
-
-   @version 1
+   @summary stack an element
 */
 void stack_push(stack* pS, void* data);
 
-
 /**
-   Enleve un element (dépile)
-   cette fonction est algorithmiquement identique a linkedList_pop_front
-   <img src="stack_pop.png"/>
-
-   @version 1
+   @summary remove an element
 */
 element* stack_pop(stack* pS);
 
-
 /**
-   Efface toute la pile
-
-   @version 1
+   @summary claer the stack
 */
 void stack_clear(stack* pS);
 
-
 /**
-   Visualisation
-
-   @version 1
+   @summary callback function on all elements
 */
 void stack_browse(stack S, void(*fctBrowse)(void*));
 
-
 /**
-   Compte le nombre d'elements
-
-   @version 1
+   @summary count the number of element
 */
 size_t stack_count(stack S);
 

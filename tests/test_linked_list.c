@@ -24,10 +24,7 @@ void linkedList(element *pFirstElem) {
 3:Insert at location\n\
 4:Insert sorted\n\
 == REMOVE == \n\
-5:Remove at the front\n\
-6:Remove at the back (TODO)\n\
-7:Remove at location (TODO)\n\
-8:Clear\n\
+8:Clear\n\\
 == VIEW == \n\
 9:View\n\
 10:View memory\n\
@@ -38,7 +35,7 @@ Your choice : ");
     scanf("%d", &choice);
     size_t loc;
     switch (choice) {
-    case 1:             //Add to the front             
+    case 1:             //Add to the front
       value = askValue();
       pFirstElem = linkedList_push_front(pFirstElem, value);
       printf("\n-- The value %d has been added to the begin of the list --\n\n", value);
@@ -60,15 +57,6 @@ Your choice : ");
     case 4:             //Insert sorted
       value = askValue();
       linkedList_insert_sorted(&pFirstElem, cmp, value);
-      break;
-    case 5:             //Remove front
-      linkedList_pop_front(&pFirstElem);
-      break;
-    case 6:             //Remove back
-      linkedList_pop_back(pFirstElem); //TODO
-      break;
-    case 7:             //Remove at loc
-      linkedList_pop_at(&pFirstElem);  //TODO
       break;
     case 8:             //Clear
       linkedList_clear(&pFirstElem);

@@ -1,9 +1,8 @@
 #include "linkedList.h"
 
-
 element* linkedList_at(element* pFirstElem, size_t loc) {
   size_t curPos = 0;
-  element* pBrowse = pFirstElem;       /* Pointeur de parcours (recherche à partir du debut jusqu'à la position) */
+  element* pBrowse = pFirstElem;
 
   while (pBrowse->next != NULL || curPos < loc) {
     pBrowse = pBrowse->next;
@@ -13,31 +12,30 @@ element* linkedList_at(element* pFirstElem, size_t loc) {
   return pBrowse;
 }
 
-
 element* linkedList_push_front(element* pFirstElem, void* data) {
-  element *pNewElem = malloc(sizeof(element));  /* Declaration et allocation du nouvel element */
-  pNewElem->data = data;                        /* Attribution de la valeur */
-  pNewElem->next = pFirstElem;                  /* Le nouvel element pointe maintenant vers l'ancienne tête de liste */
-
-  return pNewElem;                              /* Le désormé premier element prend l'@ du nouvel element (car l'ajout se fait en debut de liste)*/
+  element *pNewElem = malloc(sizeof(element));  // allocate memory for the new element
+  pNewElem->data = data;                        // set data
+  pNewElem->next = pFirstElem;                  // the new element point to the previous head
+  return pNewElem;                              // return new head
 }
 
 
 element* linkedList_push_back(element* pFirstElem, void* data) {
-  element* pNewElem = malloc(sizeof(element));  /* Declaration et allocation du nouvel element */
-  element* pBrowse;                             /* Pointeur de parcours (recherche de la fin de la liste) */
+  element* pNewElem = malloc(sizeof(element));  // allocate memory for the new element
+  element* pBrowse;
 
-  pNewElem->data = data;                        /* Attribution de la valeur */
-  pNewElem->next = NULL;                        /* Le dernier element pointera vers NULL */
+  pNewElem->data = data;
+  pNewElem->next = NULL;                        // the last element point to NULL
 
-  if (pFirstElem == NULL) {                     /* Cas si la liste est vide */
-    pFirstElem = pNewElem;                      /* Le nouvel element sera à la tête de liste */
-  } else {
-    pBrowse = pFirstElem;                      /* Recherche à partir du debut */
-    while (pBrowse->next != NULL) {            /* Navigue jusqu'au dernier element (c'est celui qui pointe vers NULL) */
+  if (pFirstElem == NULL) {                     // if list is empty
+    pFirstElem = pNewElem;                      // the new element is head
+  }
+  else {
+    pBrowse = pFirstElem;                      // search  from head
+    while (pBrowse->next != NULL) {            // browse to last element (the element that point to NULL)
       pBrowse = pBrowse->next;
     }
-    pBrowse->next = pNewElem;                  /* Le dernier element de la liste pointe vers l'element a ajouter */
+    pBrowse->next = pNewElem;                  // add the new element next of tail element
   }
 
   return pFirstElem;
@@ -45,7 +43,7 @@ element* linkedList_push_back(element* pFirstElem, void* data) {
 
 
 void linkedList_insert_at(element** pFirstElem, void* data, size_t loc) {
-  element* pNewElem = malloc(sizeof(element));  /* Declaration et allocation du nouvel element */
+  element* pNewElem = malloc(sizeof(element));  // allocate memory for the new element
   pNewElem->data = data;
 
   element* tmp = NULL;
@@ -54,8 +52,8 @@ void linkedList_insert_at(element** pFirstElem, void* data, size_t loc) {
   int i=0;
 
   while (pBrowse && i < loc) {
-    tmp = pBrowse;                  /* Retenir cet element */
-    pBrowse = pBrowse->next;        /* Avancer d'un element */
+    tmp = pBrowse;
+    pBrowse = pBrowse->next;
     i++;
   }
 
@@ -66,43 +64,21 @@ void linkedList_insert_at(element** pFirstElem, void* data, size_t loc) {
 
 
 void linkedList_insert_sorted(element** pFirstElem, char(*fctCmp)(const void*, const void*), void* data) {
-  element* pNewElem = malloc(sizeof(element));                /* Declaration et allocation du nouvel element */
+  element* pNewElem = malloc(sizeof(element));
   pNewElem->data = data;
 
   element* tmp = NULL;
   element* pBrowse = *pFirstElem;
 
-  /* trouve la bonne place (quitte si arrive a la fin de la liste ou si fctCmp renvoie 0) */
   while (pBrowse && fctCmp(data, pBrowse->data)) {
-    tmp = pBrowse;                  /* Retenir cet element */
-    pBrowse = pBrowse->next;        /* Avancer d'un element */
+    tmp = pBrowse;
+    pBrowse = pBrowse->next;
   }
 
   pNewElem->next = pBrowse;
   if (tmp) tmp->next = pNewElem;
   else *pFirstElem = pNewElem;
 }
-
-
-element* linkedList_pop_at(size_t loc) {
-
-}
-
-
-element* linkedList_pop_front(element** pFirstElem) {
-  if(*pFirstElem == NULL)
-    return NULL;
-
-  element* pBrowse = *pFirstElem;          //retenir la tete en vue de l'effacement
-  *pFirstElem = (*pFirstElem)->next;       //Déplacement au prochain élément
-  free(pBrowse);
-}
-
-
-element* linkedList_pop_back(element* pFirstElem) {
-
-}
-
 
 void linkedList_clear(element **pFirstElem) {
   element* pBrowse;
@@ -134,4 +110,3 @@ size_t linkedList_count(element* pFirstElem) {
 
   return number;
 }
-
