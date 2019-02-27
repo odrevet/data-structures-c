@@ -1,5 +1,4 @@
-rm *.o
-rm libGDS.a
+OUT_DIR=./bin
 
-rm test_linked_list
-rm test_stack
+rm *.o
+rm $OUT_DIR/*
